@@ -5,17 +5,23 @@ return {
   opts = {
     options = {
       mode = "buffers",
-      separator_style = "thin", -- Can be "slant", "thick", "thin", etc.
+      separator_style = "slant", -- Can be "slant", "thick", "thin", etc.
       always_show_bufferline = true, -- Keep visible even with one file
       show_buffer_close_icons = true,
       show_close_icon = true,
+      custom_filter = function(bufnr)
+        if vim.bo[bufnr].buftype == "terminal" then
+          return false
+        end
+        return true
+      end,
     },
   },
-  config = function()
-    require("bufferline").setup()
+  config = function(_, opts)
+    require("bufferline").setup(opts)
     local keymap = vim.keymap
 
-    keymap.set("n", "<tab>", "<cmd>bn<CR>", { desc = "Move to the next open buffer" })
-    keymap.set("n", "<S-tab>", "<cmd>bp<CR>", { desc = "Move to the previous open buffer" })
+    keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer (filtered)" })
+    keymap.set("n", "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer (filtered)" })
   end,
 }

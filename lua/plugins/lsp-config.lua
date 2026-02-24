@@ -18,13 +18,16 @@ return {
 
 			lspconfig.enable("lua_ls", {
 				settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+        on_attatch = navic_on_attach,
 				capabilities = capabilities,
 			})
 			lspconfig.enable("pyright", {
 				capabilities = capabilities,
+        on_attatch = navic_on_attach,
 			})
 			lspconfig.enable("ts_ls", {
 				capabilities = capabilities,
+        on_attatch = navic_on_attach,
 			})
 
 			local keymap = vim.keymap
