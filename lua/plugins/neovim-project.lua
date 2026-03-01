@@ -1,12 +1,12 @@
 return {
   "coffebar/neovim-project",
   opts = {
-    projects = { -- define project roots
+    projects = {
       "~/Projects/*",
       "~/Documents/Github/*",
     },
     picker = {
-      type = "telescope", -- one of "telescope", "fzf-lua", or "snacks"
+      type = "telescope",
     },
   },
   init = function()
@@ -16,8 +16,8 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "Shatur/neovim-session-manager" },
   },
-  config = function()
-    require("neovim-project").setup()
+  config = function(_, opts)
+    require("neovim-project").setup(opts)
 
     local keymap = vim.keymap
     keymap.set("n", "<C-p>", "<cmd>NeovimProjectDiscover history<CR>")
