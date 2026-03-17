@@ -2,6 +2,7 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
+-- o.winborder = "rounded"
 o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 o.cmdheight = 0
 o.laststatus = 3
