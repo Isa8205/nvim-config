@@ -4,6 +4,7 @@ return {
     projects = {
       "~/Projects/*",
       "~/Documents/Github/*",
+      "~/Unity projects/*",
     },
     picker = {
       type = "telescope",

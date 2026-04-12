@@ -4,7 +4,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- The Installer
-      "williamboman/mason-lspconfig.nvim", -- The Bridge
     },
     config = function()
       local lspconfig = vim.lsp
@@ -29,11 +28,23 @@ return {
         capabilities = capabilities,
         on_attach = navic_on_attach,
       })
+      lspconfig.enable("cssls", {
+        capabilities = capabilities,
+        on_attach = navic_on_attach,
+      })
+      lspconfig.enable("html", {
+        capabilities = capabilities,
+        on_attach = navic_on_attach,
+      })
       lspconfig.enable("clangd", {
         capabilities = capabilities,
         on_attach = navic_on_attach,
       })
       lspconfig.enable("omnisharp", {
+        capabilities = capabilities,
+        on_attach = navic_on_attach,
+      })
+      lspconfig.enable("asm_lsp", {
         capabilities = capabilities,
         on_attach = navic_on_attach,
       })
@@ -51,8 +62,25 @@ return {
   },
 
   {
+    "williamboman/mason-lspconfig.nvim", -- The Bridge
+  },
+
+  {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended for NvChad/Lazy users
     ft = { "rust" },
+    opts = {
+      server = {
+        settings = {
+          ["rust-analyzer"] = {
+            inlayHints = {
+              typeHints = { enabled = true },
+              parameterHints = { enabled = true },
+              chainingHints = { enabled = true },
+            },
+          },
+        },
+      },
+    },
   },
 }

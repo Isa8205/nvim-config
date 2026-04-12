@@ -17,6 +17,12 @@ for type, icon in pairs(signs) do
   })
 end
 
+vim.filetype.add({
+  extension = {
+    asm = "nasm"
+  }
+})
+
 require("autocmds")
 require("mappings")
 require("options")

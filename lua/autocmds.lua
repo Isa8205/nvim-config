@@ -1,8 +1,7 @@
 vim.cmd "set nowrap"
 vim.cmd "set nu"
 
--- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#2a2e36" }) -- Dim grey
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#89b4fa" }) -- Dim grey
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#3b3b3b" })
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()

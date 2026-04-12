@@ -8,6 +8,7 @@ return {
   },
   config = function()
     local builtin = require "telescope.builtin"
+
     require("telescope").setup {
       defaults = {
         mappings = {
