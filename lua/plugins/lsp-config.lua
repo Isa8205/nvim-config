@@ -48,6 +48,10 @@ return {
         capabilities = capabilities,
         on_attach = navic_on_attach,
       })
+      lspconfig.enable("prismals", {
+        capabilities = capabilities,
+        on_attach = navic_on_attach,
+      })
 
       local keymap = vim.keymap
       keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Jump to declaration point" })

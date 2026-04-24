@@ -19,7 +19,8 @@ end
 
 vim.filetype.add({
   extension = {
-    asm = "nasm"
+    asm = "nasm",
+    prisma = "prisma",
   }
 })
 

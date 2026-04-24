@@ -9,6 +9,20 @@ return {
   lazy = false, -- neo-tree will lazily load itself
   config = function()
     require("neo-tree").setup {
+      commands = {
+        safe_delete = function (state)
+          local node = state.tree:get_node();
+          local path = node.path;
+          vim.fn.system({ "trash", "gio", path });
+        end,
+      },
+
+      window = {
+        mappings = {
+          ["d"] = "safe_delete",
+        }
+      },
+
       close_if_last_window = true,
       popup_border_style = "rounded",
       enable_git_status = true,
