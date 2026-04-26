@@ -4,6 +4,15 @@ return {
   dependencies = "nvim-tree/nvim-web-devicons",
   opts = {
     options = {
+      diagnostic = "coc",
+      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        local s = " "
+        for e, n in pairs(diagnostics_dict) do
+          local sym = e == "error" and " " or (e == "warning" and " " or " ")
+          s = s .. n .. sym
+        end
+        return s
+      end,
       mode = "buffers",
       separator_style = "slant", -- Can be "slant", "thick", "thin", etc.
       always_show_bufferline = true, -- Keep visible even with one file

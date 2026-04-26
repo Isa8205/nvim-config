@@ -13,7 +13,19 @@ return {
         safe_delete = function (state)
           local node = state.tree:get_node();
           local path = node.path;
+
+          local choice = vim.fn.confirm(
+            "Trash this file\n" .. path,
+            "&Yes\n&No",
+            2
+          );
+
+          if choice ~= 1 then
+            return;
+          end
+
           vim.fn.system({ "trash", "gio", path });
+          require("neo-tree.sources.manager").refresh(state.name);
         end,
       },
 
@@ -73,7 +85,7 @@ return {
             renamed = "󰁕",
             untracked = "",
             ignored = "",
-            unstaged = "󰄱",
+            unstaged = "✗",
             staged = "",
             conflict = "",
           },
