@@ -24,6 +24,10 @@ return {
         capabilities = capabilities,
         on_attach = navic_on_attach,
       })
+      lspconfig.enable("rust_analyzer", {
+        capabilities = capabilities,
+        on_attach = navic_on_attach,
+      })
       lspconfig.enable("ts_ls", {
         capabilities = capabilities,
         on_attach = navic_on_attach,
@@ -69,22 +73,24 @@ return {
     "williamboman/mason-lspconfig.nvim", -- The Bridge
   },
 
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended for NvChad/Lazy users
-    ft = { "rust" },
-    opts = {
-      server = {
-        settings = {
-          ["rust-analyzer"] = {
-            inlayHints = {
-              typeHints = { enabled = true },
-              parameterHints = { enabled = true },
-              chainingHints = { enabled = true },
-            },
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "mrcjkb/rustaceanvim",
+  --   version = "^5", -- Recommended for NvChad/Lazy users
+  --   ft = { "rust" },
+  --   init = function()
+  --     vim.g.rustaceanvim = {
+  --       server = {
+  --         default_settings = {
+  --           ["rust-analyzer"] = {
+  --             inlayHints = {
+  --               typeHints = { enabled = true },
+  --               parameterHints = { enabled = false },
+  --               chainingHints = { enabled = false },
+  --             },
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
 }
