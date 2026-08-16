@@ -48,10 +48,10 @@ return {
   config = function(_, opts)
     local navic = require "nvim-navic"
     navic.setup(opts)
-    navic_on_attach = function(client, bufnr)
-      if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-      end
-    end
+    -- _G.navic_on_attach = function(client, bufnr)
+    --   if client.server_capabilities.documentSymbolProvider then
+    --     navic.attach(client, bufnr)
+    --   end
+    -- end
   end,
 }

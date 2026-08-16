@@ -14,10 +14,10 @@ vim.keymap.set("i", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("i", "<C-k>", "<Up>", { noremap = true })
 
 -- Window Navigation
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+keymap.set("n", "<C-h>", ":wincmd h<CR>", { desc = "Move to left window" })
+keymap.set("n", "<C-j>", ":wincmd j<CR>", { desc = "Move to bottom window" })
+keymap.set("n", "<C-k>", ":wincmd k<CR>", { desc = "Move to top window" })
+keymap.set("n", "<C-l>", ":wincmd l<CR>", { desc = "Move to right window" })
 
 -- Resize windows
 keymap.set("n", "<M-k>", ":resize -2<CR>", { desc = "Decrease window height" })

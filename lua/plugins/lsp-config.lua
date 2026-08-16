@@ -6,7 +6,9 @@ return {
       { "williamboman/mason.nvim", config = true }, -- The Installer
     },
     config = function()
+      local navic = require("nvim-navic");
       local lspconfig = vim.lsp
+      lspconfig.inlay_hint.enable(true);
 
       -- Setup Mason-LSPConfig to ensure servers are installed
       require("mason-lspconfig").setup {
@@ -14,6 +16,11 @@ return {
       }
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local on_attach_fn = function (client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+        end
+      end
 
       lspconfig.enable("lua_ls", {
         settings = { Lua = { diagnostics = { globals = { "vim" } } } },
@@ -26,11 +33,11 @@ return {
       })
       lspconfig.enable("rust_analyzer", {
         capabilities = capabilities,
-        on_attach = navic_on_attach,
+        on_attach = on_attach_fn,
       })
       lspconfig.enable("ts_ls", {
         capabilities = capabilities,
-        on_attach = navic_on_attach,
+        on_attach = on_attach_fn,
       })
       lspconfig.enable("cssls", {
         capabilities = capabilities,
@@ -42,7 +49,7 @@ return {
       })
       lspconfig.enable("clangd", {
         capabilities = capabilities,
-        on_attach = navic_on_attach,
+        on_attach = on_attach_fn,
       })
       lspconfig.enable("omnisharp", {
         capabilities = capabilities,
